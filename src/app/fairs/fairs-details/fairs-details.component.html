@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-content>
+        <div class="fairDetails">
+            <div class="banner">
+                <img [src]="fairObj.bannerUrl" [alt]="fairObj.fairName">
+                <div class="fairContent">
+                    <h3>{{fairObj.fairName|uppercase}}</h3>
+                    <p class="mb-0">Event Type: {{fairObj.type}}</p>
+                    <p class="mb-0">Event Date: {{fairObj.startDate|date}}</p>
+                </div>
+            </div>
+
+        </div>
+        <p *ngIf="fairObj.candidateDescription" [innerHTML]="fairObj.candidateDescription"></p>
+        <p *ngIf="fairObj.schoolDescription" [innerHTML]="fairObj.schoolDescription"></p>
+
+    </mat-card-content>
+</mat-card>

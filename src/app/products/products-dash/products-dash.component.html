@@ -1,0 +1,32 @@
+<div class="row my-5">
+    <div class="col-md-4 mb-5">
+        <mat-card>
+            <mat-card-title align="center">
+                Products List
+            </mat-card-title>
+            <mat-card-content *ngIf="productArr.length>0; else noProd">
+                <mat-list class="productList">
+                    <mat-list-item class="listItem" *ngFor="let prod of productArr; let i =index"
+                        [routerLink]="[prod.prodId]" [queryParams]="{canReturn:prod.canReturn}"
+                        routerLinkActive="active"><span style="width: 20px;">{{i+1+']'}}</span>
+                        <mat-icon class="mx-2">account_circle</mat-icon>
+                        {{prod.brand+" "+prod.model}}
+                    </mat-list-item>
+                </mat-list>
+                <div class="mt-4" align="end">
+                    <button mat-fab routerLink="addProduct">
+                        <mat-icon>library_add</mat-icon>
+                    </button>
+                </div>
+            </mat-card-content>
+            <ng-template #noProd>
+                <p class="alert alert-danger">
+                    No Product Found!!!
+                </p>
+            </ng-template>
+        </mat-card>
+    </div>
+    <div class="col-md-8">
+        <router-outlet></router-outlet>
+    </div>
+</div>

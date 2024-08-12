@@ -1,0 +1,111 @@
+<mat-card>
+    <mat-card-title align="center">
+        {{!isInEditMode?'Add New Product':'Update Product'}}
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+
+            <!-- brand -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    image
+                </mat-icon>
+                <mat-form-field>
+                    <mat-label>Enter Brand Name</mat-label>
+                    <input type="text" matInput formControlName="brand">
+                    <mat-error>
+                        <ng-container *ngIf="controls['brand'].touched && controls['brand'].hasError('required')">
+                            Brand Name is required field!!!
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- model -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    smartphone
+                </mat-icon>
+                <mat-form-field>
+                    <mat-label>Enter Model Name</mat-label>
+                    <input type="text" matInput formControlName="model">
+                    <mat-error>
+                        <ng-container *ngIf="controls['model'].touched && controls['model'].hasError('required')">
+                            Model Name is required field!!!
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- image -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    image
+                </mat-icon>
+                <mat-form-field>
+                    <mat-label>Enter Image URL</mat-label>
+                    <input type="text" matInput formControlName="image">
+                    <mat-error>
+                        <ng-container *ngIf="controls['image'].touched && controls['image'].hasError('required')">
+                            Image URL is required field!!!
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <!-- price -->
+                <div class="col-md-6">
+                    <div class="controls">
+                        <mat-icon class="mr-2">
+                            currency_rupee
+                        </mat-icon>
+                        <mat-form-field>
+                            <mat-label>Enter Price</mat-label>
+                            <input type="text" matInput formControlName="price">
+                            <mat-error>
+                                <ng-container
+                                    *ngIf="controls['price'].touched && controls['price'].hasError('required')">
+                                    Price is required field!!!
+                                </ng-container>
+                                <ng-container *ngIf="controls['price'].dirty && controls['price'].hasError('pattern')">
+                                    Alphabetical and Special characters not allowed!!!
+                                </ng-container>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                </div>
+                <!-- can return -->
+                <div class="col-md-6">
+                    <div class="controls">
+                        <mat-icon class="mr-2">
+                            keyboard_return
+                        </mat-icon>
+                        <mat-form-field class="w-75">
+                            <mat-label>Can Return</mat-label>
+                            <mat-select matInput formControlName="canReturn">
+                                <mat-option value="1">1</mat-option>
+                                <mat-option value="0">0</mat-option>
+                            </mat-select>
+                            <mat-error>
+                                <ng-container
+                                    *ngIf="controls['canReturn'].touched && controls['canReturn'].hasError('required')">
+                                    Can-Return is required field!!!
+                                </ng-container>
+
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-4">
+                <button mat-raised-button *ngIf="!isInEditMode" color="primary" [disabled]="productForm.invalid"
+                    type="submit">Add Product</button>
+                <button mat-raised-button color="primary" *ngIf="isInEditMode"
+                    [disabled]="productForm.invalid || canReturn==='0'" (click)="onUpdate()"
+                    type="button">Update</button>
+                <button mat-raised-button color="warn" (click)="onCancel()" type="button">Cancel</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,47 @@
+<mat-toolbar class="navbar">
+    <div class="logo">
+        Angular
+    </div>
+    <div class="navLinks">
+        <button mat-button routerLink="home" routerLinkActive="active" class="link">
+            home
+        </button>
+        <button mat-button routerLink="users" routerLinkActive="active" class="link" *ngIf="userRole.includes('admin') || userRole.includes('superAdmin')">
+            users
+        </button>
+        <button mat-button routerLink="products" routerLinkActive="active" class="link">
+            products
+        </button>
+        <button mat-button routerLink="fairs" routerLinkActive="active" class="link" *ngIf="userRole.includes('superAdmin')">
+            fairs
+        </button>
+        <button mat-raised-button color="warn" (click)="onLogOut()">Log Out</button>
+    </div>
+    <button class="menuBtn" mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>{{!sidenav.opened?'menu':'close'}}</mat-icon>
+    </button>
+
+
+
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" fixedInViewport="true" #sidenav>
+        <div class="sidenav m2">
+            <button mat-button routerLink="home" routerLinkActive="active" (click)="sidenav.close()" class="link">
+                home
+            </button>
+            <button mat-button routerLink="users" routerLinkActive="active" (click)="sidenav.close()" class="link">
+                users
+            </button>
+            <button mat-button routerLink="products" routerLinkActive="active" (click)="sidenav.close()" class="link">
+                products
+            </button>
+            <button mat-button routerLink="fairs" routerLinkActive="active" (click)="sidenav.close()" class="link">
+                fairs
+            </button>
+            <button mat-raised-button color="warn" (click)="onLogOut()">Log Out</button>
+
+
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>

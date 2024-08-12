@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <div class="userCard">
+            <mat-card>
+                <mat-card-content >
+                    <figure>
+                        <div class="image mb-3">
+                            <img [src]="userObj.userImg" [alt]="userObj.userImg" [title]="userObj.userName">
+                        </div>
+                        <figcaption class="text-center">
+                            <h2 class="mb-0">{{userObj.userName}}</h2>
+                            <h2 class="mb-0">{{userObj.userRole|uppercase}}</h2>
+                        </figcaption>
+                    </figure>
+                    <div class="d-flex justify-content-between">
+                        <button mat-raised-button color="primary" (click)="onEdit()">Edit</button>
+                        <button mat-raised-button color="warn" (click)="onRemove(userObj.userId)">Remove</button>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

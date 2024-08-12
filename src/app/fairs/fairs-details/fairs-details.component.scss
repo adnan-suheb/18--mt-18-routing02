@@ -1,0 +1,35 @@
+.fairDetails {
+
+    .banner {
+        height: 300px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .fairContent {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            padding: 1rem;
+            z-index: 1;
+            color: #fff;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-image: linear-gradient(90deg, #111, rgba(0, 0, 0, 0.0));
+        z-index: 0;
+        }
+    }
+}

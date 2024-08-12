@@ -1,0 +1,79 @@
+<mat-card>
+    <mat-card-title align="center">
+        {{!isInEditMode?'Add New User':'Update User'}}
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="userForm" (ngSubmit)="onFormSubmit()">
+            <!-- username -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    account_circle
+                </mat-icon>
+                <mat-form-field>
+                    <mat-label>Enter Username</mat-label>
+                    <input type="text" matInput formControlName="userName">
+                    <mat-error>
+                        <ng-container *ngIf="controls['userName'].touched && controls['userName'].hasError('required')">
+                            Username is required field!!!
+                        </ng-container>
+                        <ng-container *ngIf="controls['userName'].dirty && controls['userName'].hasError('pattern')">
+                            Username should not include special and numeric characters!!!
+                        </ng-container>
+                        <ng-container *ngIf="controls['userName'].dirty && controls['userName'].hasError('minlength')">
+                            Minimum length of username should be
+                            {{controls['userName'].errors?.['minlength'].requiredLength}}. Current length is
+                            {{controls['userName'].errors?.['minlength'].actualLength}}.
+                        </ng-container>
+                        <ng-container *ngIf="controls['userName'].dirty && controls['userName'].hasError('maxlength')">
+                            maximum length of username should be
+                            {{controls['userName'].errors?.['maxlength'].requiredLength}}. Current length is
+                            {{controls['userName'].errors?.['maxlength'].actualLength}}.
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- user img -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    image
+                </mat-icon>
+                <mat-form-field>
+                    <mat-label>Enter Image URL</mat-label>
+                    <input type="text" matInput formControlName="userImg">
+                    <mat-error>
+                        <ng-container *ngIf="controls['userImg'].touched && controls['userImg'].hasError('required')">
+                            Image URL is required field!!!
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <!-- user role -->
+            <div class="controls">
+                <mat-icon class="mr-2">
+                    admin_panel_settings
+                </mat-icon>
+                <mat-form-field class="w-50">
+                    <mat-label>Select User-role</mat-label>
+                    <mat-select matInput formControlName="userRole">
+                        <mat-option value="admin">ADMIN</mat-option>
+                        <mat-option value="buyer">BUYER</mat-option>
+                    </mat-select>
+                    <mat-error>
+                        <ng-container *ngIf="controls['userRole'].touched && controls['userRole'].hasError('required')">
+                            User-role is required field!!!
+                        </ng-container>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button mat-raised-button *ngIf="!isInEditMode" color="primary" [disabled]="userForm.invalid"
+                    type="submit">Add User</button>
+                <button mat-raised-button color="primary" *ngIf="isInEditMode"
+                    [disabled]="userForm.invalid || userRole==='buyer'" (click)="onUpdate()"
+                    type="button">Update</button>
+                <button mat-raised-button color="warn" (click)="onCancel()" type="button">Cancel</button>
+            </div>
+
+        </form>
+    </mat-card-content>
+</mat-card>

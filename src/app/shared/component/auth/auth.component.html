@@ -1,0 +1,88 @@
+<div class="mainAuth">
+    <mat-card class="authForm">
+        <mat-card-title align="center">
+            LOGIN
+        </mat-card-title>
+        <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+                <!-- email -->
+                <div class="controls">
+                    <mat-icon class="mr-2">
+                        mail
+                    </mat-icon>
+                    <mat-form-field>
+                        <mat-label>Enter email</mat-label>
+                        <input type="text" matInput formControlName="email">
+                        <mat-error>
+                            <ng-container *ngIf="controls['email'].touched && controls['email'].hasError('required')">
+                                Email is required field!!!
+                            </ng-container>
+                            <ng-container *ngIf="controls['email'].dirty && controls['email'].hasError('pattern')">
+                                Invalid email pattern!!!
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <!-- email -->
+                <div class="controls">
+                    <mat-icon class="mr-2">
+                        lock
+                    </mat-icon>
+                    <mat-form-field>
+                        <mat-label>Enter Password</mat-label>
+                        <input [type]="!passType?'password':'text'" matInput formControlName="password">
+                        <mat-icon matSuffix
+                            (click)="togglePassType()">{{!passType?'visibility_off':'visibility'}}</mat-icon>
+                        <mat-error>
+                            <ng-container
+                                *ngIf="controls['password'].touched && controls['password'].hasError('required')">
+                                Password is required field!!!
+                            </ng-container>
+                            <ng-container
+                                *ngIf="controls['password'].dirty && controls['password'].hasError('pattern')">
+                                Password must be at least 7 characters long and include at least one lowercase letter,
+                                one uppercase letter, one digit and one special character!!!
+                            </ng-container>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div align="end">
+                    <button type="submit" mat-raised-button color="primary">Log In</button>
+                </div>
+            </form>
+
+            <div class="accordion">
+                <mat-accordion>
+                    <mat-expansion-panel>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title> Credentails </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <h3 class="mb-0">Buyer</h3>
+                                <p class="mb-0">Email:- john@gmail.com</p>
+                                <p class="mb-0">Password:- zaq1ZAQ!</p>
+                            </div>
+                        </div>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <h3 class="mb-0">Admin</h3>
+                                <p class="mb-0">Email:- june@gmail.com</p>
+                                <p class="mb-0">Password:- zaq1ZAQ!</p>
+                            </div>
+                        </div>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <h3 class="mb-0">Super Admin</h3>
+                                <p class="mb-0">Email:- may@gmail.com</p>
+                                <p class="mb-0">Password:- zaq1ZAQ!</p>
+                            </div>
+                        </div>
+                    </mat-expansion-panel>
+
+                </mat-accordion>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

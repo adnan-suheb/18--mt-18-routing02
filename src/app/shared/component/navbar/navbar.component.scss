@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
+
+    .link {
+        margin: 0 5px;
+        text-transform: capitalize;
+    }
+}
+
+.sidenav {
+    display: flex;
+    flex-direction: column;
+}
+
+@media(min-width:900px) {
+
+    .menuBtn,
+    mat-sidenav {
+        display: none;
+    }
+}
+
+@media(max-width:900px) {
+    .navLinks {
+        display: none;
+    }
+}

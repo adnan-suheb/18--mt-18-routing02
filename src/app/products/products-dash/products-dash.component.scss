@@ -1,0 +1,22 @@
+.productList {
+    border-left: 2px solid orange;
+
+    .listItem {
+        cursor: pointer;
+        border-bottom: 1px solid grey;
+
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+            background-color: #ededed;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+    }
+
+
+}
